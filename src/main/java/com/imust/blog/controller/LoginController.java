@@ -1,6 +1,6 @@
 package com.imust.blog.controller;
 
-import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
+//import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * Content:
  */
 
-//http://localhost:8080/web/admin/login
+//http://localhost:8080/admin/login
 @Controller
 @RequestMapping("/admin")
 public class LoginController {
