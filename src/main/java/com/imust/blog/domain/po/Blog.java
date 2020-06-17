@@ -32,7 +32,13 @@ public class Blog {
     /**
      * 内容
      */
+
     private String content;
+
+    /**
+     * 博客分类
+     */
+    private String typeId;
 
     /**
      * 首图

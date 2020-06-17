@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/admin")
-public class blogsWebController {
+public class BlogWebController {
 
     @GetMapping("/blogs")
-    public String gotoBlogs(){
+    public String gotoBlog(){
         return "admin/blogs";
     }
 }
