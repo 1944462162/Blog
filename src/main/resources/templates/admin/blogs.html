@@ -95,25 +95,40 @@
           </tr>
           </thead>
           <tbody>
-          <tr th:each="blog,iterStat : ${page.content}">
-            <td th:text="${iterStat.count}">1</td>
-            <td th:text="${blog.title}">刻意练习清单</td>
-            <td th:text="${blog.type.name}">认知升级</td>
-            <td th:text="${blog.recommend} ? '是':'否'">是</td>
-            <td th:text="${blog.published} ? '发布':'草稿'">草稿</td>
-            <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
+          <tr>
+            <!--th:each="blog,iterStat :-->
+            <!--${page.content}-->
+            <td >1</td>
+            <!--th:text="${iterStat.count}"-->
+            <td >刻意练习清单</td>
+            <!--th:text="${blog.title}"-->
+            <td >认知升级</td>
+            <!--th:text="${blog.type.name}"-->
+            <td >是</td>
+            <!--th:text="${blog.recommend} ? '是':'否'"-->
+            <td >草稿</td>
+            <!--th:text="${blog.published} ? '发布':'草稿'"-->
+            <td >2017-10-02 09:45</td>
+            <!--th:text="${blog.updateTime}"-->
             <td>
-              <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
-              <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
+              <a href="#" class="ui mini teal basic button">编辑</a>
+              <!--th:href="@{/admin/blogs/{id}/input(id=${blog.id})}"-->
+              <a href="#"class="ui mini red basic button">删除</a>
+              <!--th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}"-->
             </td>
           </tr>
           </tbody>
           <tfoot>
           <tr>
             <th colspan="7">
-              <div class="ui mini pagination menu" th:if="${page.totalPages}>1" >
-                <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>
-                <a onclick="page(this)" th:attr="data-page=${page.number}+1" class=" item" th:unless="${page.last}">下一页</a>
+              <div class="ui mini pagination menu" >
+                <!--th:if="${page.totalPages}>1"-->
+                <a onclick="page(this)"  class="item" >上一页</a>
+                <!--th:attr="data-page=${page.number}-1"-->
+                <!--th:unless="${page.first}"-->
+                <a onclick="page(this)"  class=" item" >下一页</a>
+                <!--th:attr="data-page=${page.number}+1"-->
+                <!--th:unless="${page.last}"-->
               </div>
               <a href="#" th:href="@{/admin/blogs/input}" class="ui mini right floated teal basic button">新增</a>
             </th>
@@ -121,7 +136,8 @@
           </tfoot>
         </table>
 
-        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+        <div class="ui success message" >
+          <!--th:unless="${#strings.isEmpty(message)}"-->
           <i class="close icon"></i>
           <div class="header">提示：</div>
           <p th:text="${message}">恭喜，操作成功！</p>
@@ -170,7 +186,6 @@
     </div>
 
   </footer>
-  <!--/*/<th:block th:replace="User/_fragments :: script">/*/-->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
   <!--/*/</th:block>/*/-->
