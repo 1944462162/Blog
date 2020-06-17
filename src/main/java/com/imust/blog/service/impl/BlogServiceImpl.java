@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Author: wangJianBo
@@ -35,5 +36,10 @@ public class BlogServiceImpl implements BlogService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Blog> findAllBlog() {
+        return blogDao.findAll();
     }
 }

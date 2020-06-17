@@ -60,7 +60,7 @@
                 <i class="dropdown icon"></i>
                 <div class="default text">分类</div>
                 <div class="menu">
-                  <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">错误日志</div>
+                  <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${typeId}" th:text="${type.name}">错误日志</div>
                   <!--/*-->
                   <div class="item" data-value="2">开发者手册</div>
                   <!--*/-->
@@ -95,14 +95,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <!--th:each="blog,iterStat :-->
+          <tr th:each="blog,iterStat : ${blogs}">
+
             <!--${page.content}-->
-            <td >1</td>
-            <!--th:text="${iterStat.count}"-->
-            <td >刻意练习清单</td>
+            <td th:text=${iterStat.count}>1</td>
+            <!--th:text=""-->
+            <td th:text="${blog.title}" >刻意练习清单</td>
             <!--th:text="${blog.title}"-->
-            <td >认知升级</td>
+            <td th:text="${blog.typeId}">认知升级</td>
             <!--th:text="${blog.type.name}"-->
             <td >是</td>
             <!--th:text="${blog.recommend} ? '是':'否'"-->
