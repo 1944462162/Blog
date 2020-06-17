@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "Blog")
+@Table(name = "blog")
 @Data
 @ToString
 public class Blog {
@@ -62,7 +62,7 @@ public class Blog {
     /**
      * 发布
      */
-    private Boolean release;
+    private Boolean releaseBlog;
 
     /**
      * 创建时间
