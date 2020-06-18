@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Author: wangJianBo
@@ -42,4 +43,32 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findAllBlog() {
         return blogDao.findAll();
     }
+
+    @Override
+    public Boolean deleteBlog(Long id) {
+        try {
+            blogDao.deleteById(id);
+        } catch (Exception e) {
+            log.error(e.toString());
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Blog findOneBlogById(Long id){
+        return blogDao.getOne(id);
+    }
+
+    @Override
+    public Boolean upDateBlog(Blog blog) {
+        try {
+            blogDao.save(blog);
+        } catch (Exception e) {
+            log.error(e.toString());
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -104,17 +104,16 @@
             <!--th:text="${blog.title}"-->
             <td th:text="${blog.typeId}">认知升级</td>
             <!--th:text="${blog.type.name}"-->
-            <td >是</td>
+            <td th:text="${blog.recommend} ? '是':'否'">是</td>
             <!--th:text="${blog.recommend} ? '是':'否'"-->
-            <td >草稿</td>
-            <!--th:text="${blog.published} ? '发布':'草稿'"-->
-            <td >2017-10-02 09:45</td>
+            <td th:text="${blog.releaseBlog} ? '发布':'草稿'">草稿</td>
+            <!--th:text="${blog.releaseBlog} ? '发布':'草稿'"-->
+            <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
             <!--th:text="${blog.updateTime}"-->
             <td>
-              <a href="#" class="ui mini teal basic button">编辑</a>
+              <a th:href="@{/admin/blogs/update/api(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
               <!--th:href="@{/admin/blogs/{id}/input(id=${blog.id})}"-->
-              <a href="#"class="ui mini red basic button">删除</a>
-              <!--th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}"-->
+              <a  th:href="@{/admin/blogs/delete/api(id=${blog.id})}" class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>

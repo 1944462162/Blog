@@ -22,7 +22,7 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer id;
+    private Long id;
 
     /**
      * 标题
@@ -64,6 +64,12 @@ public class Blog {
      * 评论
      */
     private String comment;
+
+    /**
+     * 推荐
+     */
+
+    private Boolean recommend;
 
     /**
      * 发布

@@ -14,4 +14,10 @@ public interface BlogService {
     Boolean saveBlog(Blog blog);
 
     List<Blog> findAllBlog();
+
+    Boolean deleteBlog(Long id);
+
+    Blog findOneBlogById(Long id);
+
+    Boolean upDateBlog(Blog blog);
 }
