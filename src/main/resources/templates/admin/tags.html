@@ -21,7 +21,7 @@
           <div class="ui dropdown  item">
             <div class="text">
               <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
-              李仁密
+              <span th:text="${session.username}">王剑波</span>
             </div>
             <i class="dropdown icon"></i>
             <div class="menu">
@@ -61,9 +61,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="type,iterStat : ${page.content}">
-            <td th:text="${iterStat.count}">1</td>
-            <td th:text="${type.name}">刻意练习清单</td>
+          <tr >
+            <!--th:each="type,iterStat : ${page.content}"-->
+            <td >1</td>
+            <!--th:text="${iterStat.count}"-->
+            <td >刻意练习清单</td>
+            <!--th:text="${type.name}"-->
             <td>
               <a href="#" th:href="@{/admin/tags/{id}/input(id=${type.id})}" class="ui mini teal basic button">编辑</a>
               <a href="#" th:href="@{/admin/tags/{id}/delete(id=${type.id})}" class="ui mini red basic button">删除</a>
@@ -73,11 +76,17 @@
         <tfoot>
           <tr>
             <th colspan="6" >
-              <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
-                <a th:href="@{/admin/tags(page=${page.number}-1)}" class="  item" th:unless="${page.first}">上一页</a>
-                <a th:href="@{/admin/tags(page=${page.number}+1)}" class=" item" th:unless="${page.last}">下一页</a>
+              <div class="ui mini pagination menu" >
+                <!--th:if="${page.totalPages}>1"-->
+                <a class="item" >上一页</a>
+                <!--th:href="@{/admin/tags(page=${page.number}-1)}"-->
+                <!--th:unless="${page.first}"-->
+                <a  class=" item" >下一页</a>
+                <!--th:href="@{/admin/tags(page=${page.number}+1)}"-->
+                <!--th:unless="${page.last}"-->
               </div>
-              <a href="#" th:href="@{/admin/tags/input}"  class="ui mini right floated teal basic button">新增</a>
+              <a href="#"  class="ui mini right floated teal basic button">新增</a>
+              <!--th:href="@{/admin/tags/input}" -->
             </th>
           </tr>
         </tfoot>

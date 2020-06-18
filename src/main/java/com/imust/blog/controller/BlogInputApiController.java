@@ -47,6 +47,7 @@ public class BlogInputApiController {
         List<Blog> blogList = blogService.findAllBlog();
 
         modelMap.put("blogs", blogList);
+//        modelMap.put(, )
 
         if (operationBlog){
             attributes.addAttribute("message", "操作成功");

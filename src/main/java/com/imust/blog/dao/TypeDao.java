@@ -1,14 +1,15 @@
 package com.imust.blog.dao;
 
-import com.imust.blog.domain.po.Blog;
-import com.imust.blog.domain.po.User;
+
+import com.imust.blog.domain.po.Type;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * Author: wangJianBo
- * Date: 2020/6/17 15:18
+ * Date: 2020/6/18 16:03
  * Content:
  */
-public interface BlogDao extends JpaRepository<Blog,Long>, JpaSpecificationExecutor<Blog> {
+public interface TypeDao extends JpaRepository<Type,Integer>, JpaSpecificationExecutor<Type> {
 }

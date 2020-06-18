@@ -23,5 +23,8 @@ public class Type {
     private Integer id;
 
 
+    /**
+     * 博客分类
+     */
     private String typeName;
 }
