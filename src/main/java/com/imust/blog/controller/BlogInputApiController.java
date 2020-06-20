@@ -1,7 +1,9 @@
 package com.imust.blog.controller;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
+import com.imust.blog.service.TypeService;
 import com.imust.blog.utils.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class BlogInputApiController {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private TypeService typeService;
 
     /**
      * 编写论文进行论文的提交
@@ -78,6 +83,8 @@ public class BlogInputApiController {
     public String updateBlog(@RequestParam("id") Long id, Model model){
         Blog blog = blogService.findOneBlogById(id);
         model.addAttribute("Blog", blog);
+        List<Type> allType = typeService.findAllType();
+        model.addAttribute("types", allType);
         return "admin/blogs-input";
     }
 

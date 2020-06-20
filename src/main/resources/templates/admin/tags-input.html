@@ -47,23 +47,17 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
-      <form action="#" method="post"  th:object="${tag}" th:action="*{id}==null ? @{/admin/tags} : @{/admin/tags/{id}(id=*{id})} "  class="ui form">
+      <form method="post"  action="/admin/tags/input/save" th:object="${Tags}"   class="ui form">
         <input type="hidden" name="id" th:value="*{id}">
         <div class=" field">
           <div class="ui left labeled input">
             <label class="ui teal basic label">名称</label>
-            <input type="text" name="name" placeholder="分类名称" th:value="*{name}" >
+            <input type="text" name="tagName" placeholder="分类名称" th:value="*{tagName}" >
           </div>
         </div>
 
         <div class="ui error message"></div>
-        <!--/*/
-        <div class="ui negative message" th:if="${#fields.hasErrors('name')}"  >
-          <i class="close icon"></i>
-          <div class="header">验证失败</div>
-          <p th:errors="*{name}">提交信息不符合规则</p>
-        </div>
-         /*/-->
+
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
           <button class="ui teal submit button">提交</button>
@@ -118,10 +112,10 @@
 
   </footer>
 
-  <!--/*/<th:block th:replace="User/_fragments :: script">/*/-->
+
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-  <!--/*/</th:block>/*/-->
+
 
   <script>
 
@@ -148,3 +142,5 @@
   </script>
 </body>
 </html>
+
+

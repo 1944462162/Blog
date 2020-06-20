@@ -1,6 +1,7 @@
 package com.imust.blog.controller;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class BlogInputWebController {
     @GetMapping("/blogs/input")
     public String gotoBlogInput(Model model){
         model.addAttribute("Blog", new Blog());
+        model.addAttribute("types", new Type());
         return "admin/blogs-input";
     }
 

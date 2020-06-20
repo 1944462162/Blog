@@ -61,15 +61,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <!--th:each="type,iterStat : ${page.content}"-->
-            <td >1</td>
+          <tr th:each="tag,iterStat : ${Tags}">
+
+            <td th:text="${iterStat.count}">1</td>
             <!--th:text="${iterStat.count}"-->
-            <td >刻意练习清单</td>
+
+            <td th:text="${tag.tagName}">刻意练习清单</td>
             <!--th:text="${type.name}"-->
             <td>
-              <a href="#" th:href="@{/admin/tags/{id}/input(id=${type.id})}" class="ui mini teal basic button">编辑</a>
-              <a href="#" th:href="@{/admin/tags/{id}/delete(id=${type.id})}" class="ui mini red basic button">删除</a>
+              <a href="#"  class="ui mini teal basic button">编辑</a>
+              <!--th:href="@{/admin/tags/{id}/input(id=${type.id})}"-->
+              <a href="#"  class="ui mini red basic button">删除</a>
+              <!--th:href="@{/admin/tags/{id}/delete(id=${type.id})}"-->
             </td>
           </tr>
         </tbody>
@@ -85,7 +88,7 @@
                 <!--th:href="@{/admin/tags(page=${page.number}+1)}"-->
                 <!--th:unless="${page.last}"-->
               </div>
-              <a href="#"  class="ui mini right floated teal basic button">新增</a>
+              <a href="#" th:href="@{/admin/tags/input}" class="ui mini right floated teal basic button">新增</a>
               <!--th:href="@{/admin/tags/input}" -->
             </th>
           </tr>

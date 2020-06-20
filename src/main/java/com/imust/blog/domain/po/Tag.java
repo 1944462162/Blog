@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "type")
+@Table(name = "tag")
 @Data
 @ToString
 public class Tag {
