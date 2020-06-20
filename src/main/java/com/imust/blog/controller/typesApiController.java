@@ -67,6 +67,6 @@ public class typesApiController {
     public String updateType(@RequestParam("id") Integer id, Model model){
         Type type = typeService.findOneTypeById(id);
         model.addAttribute("Type", type);
-        return "admin/types-input.html";
+        return "admin/types-input";
     }
 }
