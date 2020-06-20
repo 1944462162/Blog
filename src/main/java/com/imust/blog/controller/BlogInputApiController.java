@@ -42,6 +42,12 @@ public class BlogInputApiController {
     public String gotoBlogInput(Blog blog, RedirectAttributes attributes, ModelMap modelMap) {
         System.out.println(blog.toString());
 
+        if (blog.getContent().length() > 100){
+            blog.setRepresent(blog.getContent().substring(0,100));
+        }
+        else{
+            blog.setRepresent(blog.getContent());
+        }
         Boolean operationBlog = blogService.saveBlog(blog);
 
         List<Blog> blogList = blogService.findAllBlog();

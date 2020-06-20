@@ -32,8 +32,20 @@ public class Blog {
     /**
      * 内容
      */
-
+    @Lob
+    @Basic(fetch= FetchType.LAZY)
     private String content;
+
+    /**
+     * 描述
+     */
+    private String represent;
+
+
+    /**
+     * 查看次数
+     */
+    private long views;
 
     /**
      * 博客分类
