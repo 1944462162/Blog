@@ -89,23 +89,21 @@
                 <i class="dropdown icon"></i>
                 <div class="default text">分类</div>
                 <div class="menu">
-                  <div class="item">错误日志</div>
+
                   <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.typeName}" th:text="${type.typeName}">错误日志</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class=" field">
+          <div class="required field">
             <div class="ui left labeled action input">
               <label class="ui compact teal basic label">标签</label>
-              <div class="ui fluid selection multiple search  dropdown">
-                <input type="hidden" name="sign" th:value="*{sign}" >
-                <!--th:value="*{tagIds}"-->
+              <div class="ui fluid selection dropdown">
+                <input type="hidden" name="sign"  th:value="*{sign}!=null ? *{sign}" >
                 <i class="dropdown icon"></i>
                 <div class="default text">标签</div>
                 <div class="menu">
-                  <div class="item">java</div>
-                  <!--<div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">java</div>-->
+                  <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.tagName}" th:text="${tag.tagName}">java</div>
                 </div>
               </div>
             </div>

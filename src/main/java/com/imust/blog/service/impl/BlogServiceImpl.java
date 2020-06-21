@@ -90,4 +90,15 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.findAllBlogByType(typeName);
     }
 
+    /**
+     * 根据标签获取相应的博客
+     * @param tagName
+     * @return
+     */
+    @Override
+    public List<Blog> findAllBlogByTagName(String tagName) {
+        return blogDao.findAllBlogByTag(tagName);
+    }
+
+
 }

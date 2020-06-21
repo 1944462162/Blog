@@ -1,13 +1,16 @@
 package com.imust.blog.controller.Reception;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Tag;
 import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
+import com.imust.blog.service.TagsService;
 import com.imust.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class ReceptionWebController {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private TagsService tagsService;
+
     /**
      * 前往博客首页
      * @param modelMap
@@ -36,8 +42,10 @@ public class ReceptionWebController {
     public String gotoIndex(ModelMap modelMap){
         List<Blog> blogList = blogService.findAllBlog();
         List<Type> allType = typeService.findAllType();
+        List<Tag> allTag = tagsService.findAllTag();
         modelMap.put("types", allType);
         modelMap.put("blogs", blogList);
+        modelMap.put("tags", allTag);
         return "index";
     }
 
@@ -55,4 +63,12 @@ public class ReceptionWebController {
         return "types";
     }
 
+    @RequestMapping("/tags")
+    public String gotoTags(ModelMap modelMap){
+        List<Tag> allTag = tagsService.findAllTag();
+        List<Blog> allBlog = blogService.findAllBlog();
+        modelMap.put("tags", allTag);
+        modelMap.addAttribute("blogs", allBlog);
+        return "tags";
+    }
 }

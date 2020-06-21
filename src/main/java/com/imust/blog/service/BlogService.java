@@ -23,4 +23,6 @@ public interface BlogService {
     Boolean upDateBlog(Blog blog);
 
     List<Blog> findAllBlogByTypeName(String typeName);
+
+    List<Blog> findAllBlogByTagName(String tagName);
 }

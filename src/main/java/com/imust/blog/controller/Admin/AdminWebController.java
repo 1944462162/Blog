@@ -43,6 +43,8 @@ public class AdminWebController {
     public String gotoBlogInput(Model model){
         model.addAttribute("Blog", new Blog());
         List<Type> allType = typeService.findAllType();
+        List<Tag> allTag = tagsService.findAllTag();
+        model.addAttribute("tags", allTag);
         model.addAttribute("types", allType);
         return "admin/blogs-input";
     }

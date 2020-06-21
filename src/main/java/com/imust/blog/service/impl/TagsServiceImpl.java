@@ -53,4 +53,10 @@ public class TagsServiceImpl implements TagsService {
     public Tag findOneTagById(Integer id) {
         return tagDao.getOne(id);
     }
+
+    @Override
+    public Tag findTagByName(String tagName) {
+        List<Tag> oneTagByName = tagDao.findOneTagByName(tagName);
+        return oneTagByName.get(0);
+    }
 }

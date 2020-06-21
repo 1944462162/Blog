@@ -18,4 +18,6 @@ public interface TagsService {
     Boolean deleteTag(Integer id);
 
     Tag findOneTagById(Integer id);
+
+    Tag findTagByName(String tagName);
 }

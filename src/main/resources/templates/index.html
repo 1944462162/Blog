@@ -16,7 +16,7 @@
         <h2 class="ui teal header item">Blog</h2>
         <a href="#" th:href="@{/blog/index}" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
         <a href="#" th:href="@{/blog/types}" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
-        <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+        <a href="#" th:href="@{/blog/tags}" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
         <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
         <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
         <div class="right m-item item m-mobile-hide">
@@ -138,35 +138,9 @@
             <div class="ui teal segment">
               <div class="ui fluid vertical menu" >
                 <a href="#" th:each="type : ${types}" th:href="@{/blog/api/findAllBlogByType(typeName=${type.typeName})}" target="_blank" class="item" >
-                  <!--th:href="@{/types/{id}(id=${type.typeName})}"-->
-                  <!--th:each="type : ${types}"-->
                   <span th:text="${type.typeName}">学习日志</span>
-
                   <div class="ui teal basic left pointing label" th:text="${type.blogNumber}">13</div>
-                  <!--th:text="${#arrays.length(type.blogs)}"-->
                 </a>
-                <!--/*-->
-                <a href="#" class="item">
-                  思考与感悟
-                  <div class="ui teal basic left pointing label">13</div>
-                </a>
-                <a href="#" class="item">
-                  学习日志
-                  <div class="ui teal basic left pointing label">13</div>
-                </a>
-                <a href="#" class="item">
-                  学习日志
-                  <div class="ui teal basic left pointing label">13</div>
-                </a>
-                <a href="#" class="item">
-                  学习日志
-                  <div class="ui teal basic left pointing label">13</div>
-                </a>
-                <a href="#" class="item">
-                  学习日志
-                  <div class="ui teal basic left pointing label">13</div>
-                </a>
-                <!--*/-->
               </div>
             </div>
           </div>
@@ -179,18 +153,17 @@
                   <i class="tags icon"></i>标签
                 </div>
                 <div class="right aligned column">
-                  <a href="#"target="_blank">more <i class="angle double right icon"></i></a>
+                  <a href="#" th:href="@{tags/-1}" target="_blank">more <i class="angle double right icon"></i></a>
                   <!--th:href="@{tags/-1}"-->
                 </div>
               </div>
             </div>
             <div class="ui teal segment">
-              <a href="#"  target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+              <a href="#" th:each="tag : ${tags}" th:href="@{/blog/api/findAllBlogByTag(tagName=${tag.tagName})}" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
                 <!--th:href="@{/tags/{id}(id=${tag.id})}"-->
                 <!--th:each="tag : ${tags}"-->
-                <span >方法论</span> <div class="detail">23</div>
-                <!--th:text="${tag.name}"-->
-                <!--th:text="${#arrays.length(tag.blogs)}"-->
+                <span th:text="${tag.tagName}">方法论</span> <div class="detail" th:text="${tag.tagNumber}">23</div>
+
               </a>
               <!--/*-->
               <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
