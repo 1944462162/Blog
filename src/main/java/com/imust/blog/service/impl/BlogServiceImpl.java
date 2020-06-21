@@ -2,6 +2,7 @@ package com.imust.blog.service.impl;
 
 import com.imust.blog.dao.BlogDao;
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
 import com.imust.blog.utils.Time;
 import lombok.extern.slf4j.Slf4j;
@@ -69,6 +70,16 @@ public class BlogServiceImpl implements BlogService {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 根据分类获取相应的博客
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Blog> findAllBlogByType(Type type) {
+        return blogDao.findAllBlogByType(type.getTypeName());
     }
 
 }

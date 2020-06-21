@@ -55,6 +55,7 @@ public class BlogInputApiController {
         }
         Boolean operationBlog = blogService.saveBlog(blog);
 
+
         List<Blog> blogList = blogService.findAllBlog();
 
         modelMap.put("blogs", blogList);

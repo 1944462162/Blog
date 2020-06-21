@@ -1,6 +1,7 @@
 package com.imust.blog.service;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Type;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface BlogService {
     Blog findOneBlogById(Long id);
 
     Boolean upDateBlog(Blog blog);
+
+    List<Blog> findAllBlogByType(Type type);
 }
