@@ -63,6 +63,11 @@ public class ReceptionWebController {
         return "types";
     }
 
+    /**
+     * 前往标签界面
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/tags")
     public String gotoTags(ModelMap modelMap){
         List<Tag> allTag = tagsService.findAllTag();
@@ -70,5 +75,14 @@ public class ReceptionWebController {
         modelMap.put("tags", allTag);
         modelMap.addAttribute("blogs", allBlog);
         return "tags";
+    }
+
+    /**
+     * 跳转到关于我界面
+     * @return
+     */
+    @RequestMapping("/about")
+    public String gotoAbout(){
+        return "about";
     }
 }
