@@ -1,4 +1,4 @@
-package com.imust.blog.controller;
+package com.imust.blog.controller.Admin;
 
 //import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import com.imust.blog.domain.po.User;

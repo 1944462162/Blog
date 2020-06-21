@@ -1,10 +1,11 @@
-package com.imust.blog.controller;
+package com.imust.blog.controller.Admin;
 
 import com.imust.blog.domain.po.Blog;
 import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
 import com.imust.blog.service.TypeService;
 import com.imust.blog.utils.Time;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,19 +48,15 @@ public class BlogInputApiController {
     public String gotoBlogInput(Blog blog, RedirectAttributes attributes, ModelMap modelMap) {
         System.out.println(blog.toString());
 
-        if (blog.getContent().length() > 100){
-            blog.setRepresent(blog.getContent().substring(0,100));
-        }
-        else{
-            blog.setRepresent(blog.getContent());
-        }
         Boolean operationBlog = blogService.saveBlog(blog);
+        Type oneTypeByName = typeService.findOneTypeByName(blog.getTypeId());
 
+        oneTypeByName.setBlogNumber(oneTypeByName.getBlogNumber() + 1);
+        typeService.saveType(oneTypeByName);
 
         List<Blog> blogList = blogService.findAllBlog();
 
         modelMap.put("blogs", blogList);
-//        modelMap.put(, )
 
         if (operationBlog){
             attributes.addAttribute("message", "操作成功");

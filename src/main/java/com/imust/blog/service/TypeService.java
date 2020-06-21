@@ -18,4 +18,6 @@ public interface TypeService {
     Boolean deleteType(Integer id);
 
     Type findOneTypeById(Integer id);
+
+    Type findOneTypeByName(String typeName);
 }

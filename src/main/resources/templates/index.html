@@ -137,8 +137,8 @@
             </div>
             <div class="ui teal segment">
               <div class="ui fluid vertical menu" >
-                <a href="#" th:each="type : ${types}" target="_blank" class="item" >
-                  <!--th:href="@{/types/{id}(id=${type.id})}"-->
+                <a href="#" th:each="type : ${types}" th:href="@{/blog/api/findAllBlogByType(typeName=${type.typeName})}" target="_blank" class="item" >
+                  <!--th:href="@{/types/{id}(id=${type.typeName})}"-->
                   <!--th:each="type : ${types}"-->
                   <span th:text="${type.typeName}">学习日志</span>
 

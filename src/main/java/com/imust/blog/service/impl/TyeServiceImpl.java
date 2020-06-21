@@ -51,4 +51,17 @@ public class TyeServiceImpl implements TypeService {
     public Type findOneTypeById(Integer id) {
         return typeDao.getOne(id);
     }
+
+    @Override
+    public Type findOneTypeByName(String typeName) {
+        List<Type> oneTypeByName = typeDao.findOneTypeByName(typeName);
+
+        if (oneTypeByName.isEmpty()){
+            log.error("提交的论文还没有分类");
+            throw new RuntimeException();
+        }
+        return oneTypeByName.get(0);
+    }
+
+
 }

@@ -28,6 +28,14 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
     @Override
     public Boolean saveBlog(Blog blog) {
+
+        if (blog.getContent().length() > 100){
+            blog.setRepresent(blog.getContent().substring(0,100));
+        }
+        else{
+            blog.setRepresent(blog.getContent());
+        }
+
         Time time = new Time();
         try {
             blog.setCreateTime(time.getNowDate());
@@ -74,12 +82,12 @@ public class BlogServiceImpl implements BlogService {
 
     /**
      * 根据分类获取相应的博客
-     * @param type
+     * @param typeName
      * @return
      */
     @Override
-    public List<Blog> findAllBlogByType(Type type) {
-        return blogDao.findAllBlogByType(type.getTypeName());
+    public List<Blog> findAllBlogByTypeName(String typeName) {
+        return blogDao.findAllBlogByType(typeName);
     }
 
 }

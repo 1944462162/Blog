@@ -5,6 +5,9 @@ import com.imust.blog.domain.po.Type;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * Author: wangJianBo
@@ -12,4 +15,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * Content:
  */
 public interface TypeDao extends JpaRepository<Type,Integer>, JpaSpecificationExecutor<Type> {
+
+    @Query(value = "from Type where typeName = ?1")
+    List<Type> findOneTypeByName(String typeName);
 }

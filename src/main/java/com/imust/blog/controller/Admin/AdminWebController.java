@@ -1,4 +1,4 @@
-package com.imust.blog.controller;
+package com.imust.blog.controller.Admin;
 
 import com.imust.blog.domain.po.Blog;
 import com.imust.blog.domain.po.Tag;

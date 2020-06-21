@@ -1,4 +1,4 @@
-package com.imust.blog.controller;
+package com.imust.blog.controller.Reception;
 
 import com.imust.blog.domain.po.Blog;
 import com.imust.blog.domain.po.Type;
@@ -36,22 +36,21 @@ public class ReceptionWebController {
     public String gotoIndex(ModelMap modelMap){
         List<Blog> blogList = blogService.findAllBlog();
         List<Type> allType = typeService.findAllType();
-        for (Type type : allType) {
-            List<Blog> allBlogByType = blogService.findAllBlogByType(type);
-            type.setBlogNumber(allBlogByType.size());
-        }
         modelMap.put("types", allType);
         modelMap.put("blogs", blogList);
         return "index";
     }
 
+    /**
+     * 点击导航栏的分类
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/types")
     public String gotoType(ModelMap modelMap){
         List<Type> allType = typeService.findAllType();
-        for (Type type : allType) {
-            List<Blog> allBlogByType = blogService.findAllBlogByType(type);
-            type.setBlogNumber(allBlogByType.size());
-        }
+        List<Blog> allBlog = blogService.findAllBlog();
+        modelMap.addAttribute("blogs", allBlog);
         modelMap.put("types", allType);
         return "types";
     }

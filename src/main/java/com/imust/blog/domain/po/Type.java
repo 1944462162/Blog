@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "type")
+@Table(name = "types")
 @Data
 @ToString
 public class Type {
