@@ -25,4 +25,6 @@ public interface BlogService {
     List<Blog> findAllBlogByTypeName(String typeName);
 
     List<Blog> findAllBlogByTagName(String tagName);
+
+    List<Blog> searchAllBlog(String keyword);
 }

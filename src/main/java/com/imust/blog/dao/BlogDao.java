@@ -20,4 +20,7 @@ public interface BlogDao extends JpaRepository<Blog,Long>, JpaSpecificationExecu
 
     @Query(value = "from Blog where sign = ?1")
     List<Blog> findAllBlogByTag(String sign);
+
+    @Query(value = "from Blog where title like %?1% or content like %?1%")
+    List<Blog> searchAllBlogBykeyword(String keyword);
 }

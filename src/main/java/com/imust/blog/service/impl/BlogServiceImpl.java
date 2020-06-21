@@ -100,5 +100,10 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.findAllBlogByTag(tagName);
     }
 
+    @Override
+    public List<Blog> searchAllBlog(String keyword) {
+        return blogDao.searchAllBlogBykeyword(keyword);
+    }
+
 
 }
