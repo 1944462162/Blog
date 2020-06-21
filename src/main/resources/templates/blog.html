@@ -380,7 +380,7 @@
     });
 
     var serurl = /*[[#{Blog.serurl}]]*/"127.0.0.1:8080";
-    var url = /*[[@{/Blog/{id}(id=${Blog.id})}]]*/"";
+    var url = "";
     var qrcode = new QRCode("qrcode", {
       text: serurl+url,
       width: 110,
@@ -437,7 +437,7 @@
     });
 
     $(function () {
-      $("#comment-container").load(/*[[@{/comments/{id}(id=${Blog.id})}]]*/"comments/6");
+      $("#comment-container").load("comments/6");
     });
 
 
