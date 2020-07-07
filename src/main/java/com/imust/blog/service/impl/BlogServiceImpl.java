@@ -2,6 +2,7 @@ package com.imust.blog.service.impl;
 
 import com.imust.blog.dao.BlogDao;
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Search;
 import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
 import com.imust.blog.utils.Time;
@@ -103,6 +104,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> searchAllBlog(String keyword) {
         return blogDao.searchAllBlogBykeyword(keyword);
+    }
+
+    @Override
+    public List<Blog> searchAdminAllBlog(Search search) {
+        return blogDao.searchAdminAllBlog(search.getTitle(), search.getTypeId(), search.getRecommend());
     }
 
 

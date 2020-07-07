@@ -1,6 +1,8 @@
 package com.imust.blog.config.intercepors;
 
 import com.imust.blog.domain.po.User;
+import com.imust.blog.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,15 +20,18 @@ import javax.servlet.http.HttpSession;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private LoginService loginService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         User user = new User();
         user.setUserName((String) session.getAttribute("username"));
         user.setPassWord((String) session.getAttribute("password"));
-        System.out.println(user);
-        if (StringUtils.isEmpty(user)) {
-            response.sendRedirect("/admin/login");
+        System.out.println(loginService.findUser(user));
+        if (!loginService.findUser(user)) {
+            response.sendRedirect("/admin");
             return false;
         } else{
             return true;

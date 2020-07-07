@@ -1,6 +1,7 @@
 package com.imust.blog.service;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Search;
 import com.imust.blog.domain.po.Type;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface BlogService {
     List<Blog> findAllBlogByTagName(String tagName);
 
     List<Blog> searchAllBlog(String keyword);
+
+    List<Blog> searchAdminAllBlog(Search search);
 }

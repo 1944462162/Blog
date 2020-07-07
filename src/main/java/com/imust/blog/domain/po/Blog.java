@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Author: wangJianBo
@@ -72,10 +73,6 @@ public class Blog {
      */
     private Boolean appreciate;
 
-    /**
-     * 评论
-     */
-    private String comment;
 
     /**
      * 推荐

@@ -23,4 +23,7 @@ public interface BlogDao extends JpaRepository<Blog,Long>, JpaSpecificationExecu
 
     @Query(value = "from Blog where title like %?1% or content like %?1%")
     List<Blog> searchAllBlogBykeyword(String keyword);
+
+    @Query(value = "from Blog where title = ?1 and typeId =  ?2 and recommend = ?3")
+    List<Blog> searchAdminAllBlog(String title,String typeName,Boolean recommend);
 }

@@ -1,6 +1,7 @@
 package com.imust.blog.controller.Admin;
 
 import com.imust.blog.domain.po.Blog;
+import com.imust.blog.domain.po.Search;
 import com.imust.blog.domain.po.Tag;
 import com.imust.blog.domain.po.Type;
 import com.imust.blog.service.BlogService;
@@ -66,9 +67,10 @@ public class BlogInputApiController {
         tagsService.saveTag(tagByName);
 
         List<Blog> blogList = blogService.findAllBlog();
+        List<Type> allType = typeService.findAllType();
 
         modelMap.put("blogs", blogList);
-
+        modelMap.put("types", allType);
         if (operationBlog){
             attributes.addAttribute("message", "操作成功");
         } else {
@@ -109,6 +111,28 @@ public class BlogInputApiController {
         model.addAttribute("Blog", blog);
         model.addAttribute("types", allType);
         return "admin/blogs-input";
+    }
+
+    @PostMapping("/blogs/search")
+    public String adminSearchBlog(Search search,ModelMap modelMap,RedirectAttributes attributes){
+        System.out.println(search.toString());
+        boolean operationBlog = true;
+        List<Blog> blogList = blogService.searchAdminAllBlog(search);
+        if (blogList.isEmpty()){
+            operationBlog = false;
+        }
+        System.out.println(blogList.toString());
+        List<Type> allType = typeService.findAllType();
+        modelMap.put("types", allType);
+        modelMap.put("blogs", blogList);
+        if (operationBlog){
+            attributes.addAttribute("message", "操作成功");
+        } else {
+            attributes.addAttribute("message", "操作失败");
+        }
+
+
+        return "redirect:/admin/blogs";
     }
 
 }

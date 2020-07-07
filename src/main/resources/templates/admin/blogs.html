@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!--导航-->
+  <!--&lt;!&ndash;导航&ndash;&gt;-->
   <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
     <div class="ui container">
       <div class="ui inverted secondary stackable menu">
@@ -47,7 +47,7 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
-      <div  class="ui secondary segment form">
+      <div id="table-container" class="ui secondary segment form">
         <input type="hidden" name="page" >
         <div class="inline fields">
           <div class="field">
@@ -60,7 +60,7 @@
                 <i class="dropdown icon"></i>
                 <div class="default text">分类</div>
                 <div class="menu">
-                  <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${typeId}" th:text="${type.name}">错误日志</div>
+                  <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.typeName}" th:text="${type.typeName}">错误日志</div>
                   <!--/*-->
                   <div class="item" data-value="2">开发者手册</div>
                   <!--*/-->
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <div id="table-container">
+      <div >
         <table th:fragment="blogList" class="ui compact teal table">
           <thead>
           <tr>
@@ -222,12 +222,12 @@
       loaddata();
     });
     function loaddata() {
-      $("#table-container").load(/*[[@{/User/blogs/search}]]*/"/admin/blogs/search",{
-        title : $("[name='title']").val(),
-        typeId : $("[name='typeId']").val(),
-        recommend : $("[name='recommend']").prop('checked'),
-        page : $("[name='page']").val()
-      });
+      // $.ajax({cache: false})
+      // $("#table-container").load("/admin/blogs/search",{
+      //   title : $("[name='title']").val(),
+      //   typeId : $("[name='typeId']").val(),
+      //   recommend : $("[name='recommend']").prop('checked')
+      // });
     }
 
   </script>

@@ -58,8 +58,9 @@ public class AdminWebController {
     public String gotoBlog(ModelMap modelMap){
 
         List<Blog> blogList = blogService.findAllBlog();
+        List<Type> allType = typeService.findAllType();
         modelMap.put("blogs", blogList);
-
+        modelMap.put("types", allType);
         return "admin/blogs";
     }
 
