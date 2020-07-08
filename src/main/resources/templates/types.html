@@ -66,9 +66,7 @@
                   <div class="ui mini horizontal link list">
                     <div class="item">
                       <img src="https://unsplash.it/100/100?image=1005"   alt="" class="ui avatar image">
-                      <!--th:src="@{${blog.user.avatar}}"-->
                       <div class="content"><a href="#" class="header"  >王剑波</a></div>
-                      <!--th:text="${blog.user.nickname}"-->
                     </div>
                     <div class="item">
                       <i class="calendar icon"></i><span th:text="${blog.updateTime}">2017-10-01</span>
@@ -86,9 +84,7 @@
 
             <div class="five wide column">
               <a href="#" target="_blank">
-                <!--th:href="@{/blog/{id}(id=${blog.id})}"-->
                 <img src="https://unsplash.it/800/450?image=1005"   alt="" class="ui rounded image">
-                <!--th:src="@{${blog.firstPicture}}"-->
               </a>
             </div>
 
@@ -103,7 +99,7 @@
           <div class="column">
             <a href="#"   class="ui mini teal basic button">上一页</a>
             <!--th:href="@{'/types/'+${activeTypeId}(page=${page.number}-1)}"-->
-            <!--th:unless="${page.first}"-->
+            <!--th:=unless"${page.first}"-->
           </div>
           <div class="right aligned column">
             <a href="#"  class="ui mini teal basic button">下一页</a>
@@ -154,10 +150,8 @@
     </div>
 
   </footer>
-  <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-  <!--/*/</th:block>/*/-->
 
   <script>
     $('.menu.toggle').click(function () {

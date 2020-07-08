@@ -115,16 +115,8 @@
           <tr>
             <th colspan="7">
               <div class="ui mini pagination menu" >
-                <!--th:if="${page}>1"-->
-                <!--th:if="${page}>1" th:attr="data-page=${page}-1"-->
                 <a onclick="page(this)" class=" item" th:attr="data-page=${pages}-1">上一页</a>
                 <a onclick="page(this)" class=" item" th:attr="data-page=${pages}+1">下一页</a>
-                <!--th:attr="data-page=${page.number}-1"-->
-                <!--th:unless="${page.first}"-->
-                <!--th:attr="data-page=${pages}+1"-->
-                <!--th:attr="data-page=${page}+1"-->
-                <!--th:attr="data-page=${page.number}+1"-->
-                <!--th:unless="${page.last}"-->
               </div>
               <a href="#" th:href="@{/admin/blogs/input}" class="ui mini right floated teal basic button">新增</a>
             </th>

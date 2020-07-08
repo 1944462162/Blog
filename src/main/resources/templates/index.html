@@ -60,39 +60,31 @@
                   <h3 class="ui header" ><a href="#" th:href="@{/blog/api/(id=${blog.id})}" th:text="${blog.title}" target="_blank" class="m-black" >你真的理解什么是财富自由吗?</a></h3>
 
                   <p class="m-text" th:text="|${blog.represent}">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是大家都那么做而已…...</p>
-                  <!--th:text="|${blog.description}......|"-->
                   <div class="ui grid">
                     <div class="eleven wide column">
                       <div class="ui mini horizontal link list">
                         <div class="item">
                           <img src="https://unsplash.it/100/100?image=1005"  alt="" class="ui avatar image">
-                          <!--th:src="@{${blog.user.avatar}}"-->
                           <div class="content"><a href="#" class="header" >王剑波</a></div>
-                          <!--th:text="${blog.user.nickname}"-->
                         </div>
                         <div class="item">
                           <i class="calendar icon" ></i>
                           <span th:text="${blog.updateTime}">2017-10-01</span>
-                          <!--th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}"-->
                         </div>
                         <div class="item">
                           <i class="eye icon"></i> <span th:text="${blog.views}">2342</span>
-                          <!--th:text="${blog.views}"-->
                         </div>
                       </div>
                     </div>
                     <div class="right aligned five wide column">
                       <a href="#"th:href="@{/blog/api/findAllBlogByType(typeName=${blog.typeId})}" th:text="${blog.typeId}" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" >认知升级</a>
-                      <!--th:text="${blog.type.name}"-->
                     </div>
                   </div>
                 </div>
 
                 <div class="five wide column">
                   <a href="#" target="_blank">
-                    <!--th:href="@{/blog/{id}(id=${blog.id})}"-->
                     <img src="https://unsplash.it/800/450?image=1005"   alt="" class="ui rounded image">
-                    <!--th:src="@{${blog.firstPicture}}"-->
                   </a>
                 </div>
 
@@ -102,17 +94,12 @@
 
           <!--footer-->
           <div class="ui bottom attached segment" >
-            <!--th:if="${page.totalPages}>1"-->
             <div class="ui middle aligned two column grid">
               <div class="column">
                 <a href="#" th:href="@{/blog/page/(page=${pages}-1)}"  class="ui mini teal basic button">上一页</a>
-                <!--th:href="@{/(page=${page.number}-1)}"-->
-                <!--th:unless="${page.first}"-->
               </div>
               <div class="right aligned column">
                 <a href="#" th:href="@{/blog/page/(page=${pages}+1)}"  class="ui mini teal basic button" >下一页</a>
-                <!--th:href="@{/(page=${page.number}+1)}"-->
-                <!--th:unless="${page.last}"-->
               </div>
             </div>
           </div>
@@ -153,14 +140,12 @@
                 </div>
                 <div class="right aligned column">
                   <a href="#" th:href="@{/blog/tags}" target="_blank">more <i class="angle double right icon"></i></a>
-                  <!--th:href="@{tags/-1}"-->
                 </div>
               </div>
             </div>
             <div class="ui teal segment">
               <a href="#" th:each="tag : ${tags}" th:href="@{/blog/api/findAllBlogByTag(tagName=${tag.tagName})}" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
-                <!--th:href="@{/tags/{id}(id=${tag.id})}"-->
-                <!--th:each="tag : ${tags}"-->
+
                 <span th:text="${tag.tagName}">方法论</span> <div class="detail" th:text="${tag.tagNumber}">23</div>
 
               </a>

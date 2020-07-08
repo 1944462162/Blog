@@ -48,7 +48,7 @@
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
       <div class="ui success message" th:unless="${#strings.isEmpty(param.message)}">
-        <!---->
+
         <i class="close icon"></i>
         <div class="header">提示：</div>
         <p th:text="${param.message}">恭喜，操作成功！</p>
@@ -63,14 +63,13 @@
         </thead>
         <tbody>
           <tr th:each="type,iterStat : ${types}">
-            <!---->
+
             <td th:text="${iterStat.count}">1</td>
-            <!---->
+
             <td th:text="${type.typeName}">刻意练习清单</td>
-            <!---->
+
             <td>
               <a href="#" th:href="@{/admin/types/update/api(id=${type.id})}" class="ui mini teal basic button">编辑</a>
-              <!--th:href="@{/admin/types/{id}/input(id=${type.id})}"-->
               <a href="#" th:href="@{/admin/types/delete/api(id=${type.id})}" class="ui mini red basic button">删除</a>
             </td>
           </tr>
