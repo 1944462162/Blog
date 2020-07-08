@@ -26,4 +26,7 @@ public interface BlogDao extends JpaRepository<Blog,Long>, JpaSpecificationExecu
 
     @Query(value = "from Blog where title = ?1 and typeId =  ?2 and recommend = ?3")
     List<Blog> searchAdminAllBlog(String title,String typeName,Boolean recommend);
+
+    @Query(value = "from Blog where releaseBlog = ?1")
+    List<Blog> findAllBlogByReleaseBlog(boolean releaseBlog);
 }

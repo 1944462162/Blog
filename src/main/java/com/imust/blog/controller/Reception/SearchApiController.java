@@ -47,7 +47,7 @@ public class SearchApiController {
     @GetMapping("/page")
     public String SearchBlogByPage(ModelMap modelMap,@RequestParam Integer page){
         System.out.println(page);
-        List<Blog> blogList = blogService.getBlogByPage(page);
+        List<Blog> blogList = blogService.getBlogByPage(page,true);
         List<Type> allType = typeService.findAllType();
         List<Tag> allTag = tagsService.findAllTag();
         modelMap.put("types", allType);

@@ -31,5 +31,7 @@ public interface BlogService {
 
     List<Blog> searchAdminAllBlogAndByPage(Search search,Integer page);
 
-    List<Blog> getBlogByPage(Integer page);
+    List<Blog> getBlogByPage(Integer page,Boolean releaseBlog);
+
+    List<Blog> findBlogByReleaseBlog(Boolean releaseBlog);
 }

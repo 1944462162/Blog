@@ -122,17 +122,31 @@ public class BlogServiceImpl implements BlogService {
         return  blogList.subList(firstIndex, lastIndex);
     }
 
+    /**
+     * 分页进行查找，
+     * @param page
+     * @param releaseBlog  判断是否是发布的
+     * @return
+     */
     @Override
-    public List<Blog> getBlogByPage(Integer page) {
+    public List<Blog> getBlogByPage(Integer page,Boolean releaseBlog) {
 
-        List<Blog> allBlog = blogDao.findAll();
-
+        List<Blog> allBlog;
+        if (!releaseBlog)
+            allBlog = blogDao.findAll();
+        else
+            allBlog = findBlogByReleaseBlog(releaseBlog);
         int firstIndex = (page - 1) * pageSize;
         int lastIndex = page * pageSize;
         if (lastIndex > allBlog.size()){
             lastIndex = allBlog.size();
         }
         return allBlog.subList(firstIndex, lastIndex);
+    }
+
+    @Override
+    public List<Blog> findBlogByReleaseBlog(Boolean releaseBlog) {
+        return blogDao.findAllBlogByReleaseBlog(releaseBlog);
     }
 
 }

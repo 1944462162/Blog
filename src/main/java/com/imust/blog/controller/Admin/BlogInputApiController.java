@@ -71,7 +71,7 @@ public class BlogInputApiController {
         tagByName.setTagNumber(tagByName.getTagNumber() + 1);
         tagsService.saveTag(tagByName);
 
-        List<Blog> blogList = blogService.getBlogByPage(1);
+        List<Blog> blogList = blogService.getBlogByPage(1,false);
         List<Type> allType = typeService.findAllType();
 
         modelMap.put("blogs", blogList);
@@ -149,7 +149,7 @@ public class BlogInputApiController {
                 modelMap.put("pages", search.getPage());
         }
         else{
-            blogList = blogService.getBlogByPage(search.getPage());
+            blogList = blogService.getBlogByPage(search.getPage(),false);
             SearchNumber = 1;
             PageNumber++;
             if (PageNumber == 0)

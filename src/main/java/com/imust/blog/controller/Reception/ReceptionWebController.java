@@ -40,7 +40,7 @@ public class ReceptionWebController {
      */
     @RequestMapping("/index")
     public String gotoIndex(ModelMap modelMap){
-        List<Blog> blogList = blogService.getBlogByPage(1);
+        List<Blog> blogList = blogService.getBlogByPage(1,true);
         List<Type> allType = typeService.findAllType();
         List<Tag> allTag = tagsService.findAllTag();
         modelMap.put("types", allType);
