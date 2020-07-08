@@ -27,6 +27,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogDao blogDao;
+
+    /**
+     * 规定每页的数量为 10
+     */
+    private final Integer pageSize = 10;
     @Override
     public Boolean saveBlog(Blog blog) {
 
@@ -107,9 +112,27 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> searchAdminAllBlog(Search search) {
-        return blogDao.searchAdminAllBlog(search.getTitle(), search.getTypeId(), search.getRecommend());
+    public List<Blog> searchAdminAllBlogAndByPage(Search search,Integer page) {
+        List<Blog> blogList = blogDao.searchAdminAllBlog(search.getTitle(), search.getTypeId(), search.getRecommend());
+        int firstIndex = (page - 1) * pageSize;
+        int lastIndex = page * pageSize;
+        if (lastIndex > blogList.size()){
+            lastIndex = blogList.size();
+        }
+        return  blogList.subList(firstIndex, lastIndex);
     }
 
+    @Override
+    public List<Blog> getBlogByPage(Integer page) {
+
+        List<Blog> allBlog = blogDao.findAll();
+
+        int firstIndex = (page - 1) * pageSize;
+        int lastIndex = page * pageSize;
+        if (lastIndex > allBlog.size()){
+            lastIndex = allBlog.size();
+        }
+        return allBlog.subList(firstIndex, lastIndex);
+    }
 
 }

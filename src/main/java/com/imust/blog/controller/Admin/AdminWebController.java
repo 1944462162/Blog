@@ -56,11 +56,12 @@ public class AdminWebController {
      */
     @GetMapping("/blogs")
     public String gotoBlog(ModelMap modelMap){
+        List<Blog> blogList = blogService.getBlogByPage(1);
 
-        List<Blog> blogList = blogService.findAllBlog();
         List<Type> allType = typeService.findAllType();
         modelMap.put("blogs", blogList);
         modelMap.put("types", allType);
+        modelMap.put("pages", 1);
         return "admin/blogs";
     }
 

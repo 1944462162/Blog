@@ -18,4 +18,8 @@ public class Search {
     private String typeId;
 
     private Boolean recommend;
+
+    private Integer page;
+
+    private Boolean pageOrSearch;
 }

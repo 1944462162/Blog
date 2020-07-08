@@ -29,5 +29,7 @@ public interface BlogService {
 
     List<Blog> searchAllBlog(String keyword);
 
-    List<Blog> searchAdminAllBlog(Search search);
+    List<Blog> searchAdminAllBlogAndByPage(Search search,Integer page);
+
+    List<Blog> getBlogByPage(Integer page);
 }

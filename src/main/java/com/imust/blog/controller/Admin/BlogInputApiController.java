@@ -43,6 +43,10 @@ public class BlogInputApiController {
     @Autowired
     private TagsService tagsService;
 
+    private Integer SearchNumber = 0;
+
+    private Integer PageNumber = 0;
+
     /**
      * 编写论文进行论文的提交
      * @param blog
@@ -53,6 +57,7 @@ public class BlogInputApiController {
     @PostMapping("/blogs/input/api")
     public String gotoBlogInput(Blog blog, RedirectAttributes attributes, ModelMap modelMap) {
         System.out.println(blog.toString());
+
 
         Boolean operationBlog = blogService.saveBlog(blog);
         //当增加博客的时候对应的分类标签数量加一
@@ -66,10 +71,11 @@ public class BlogInputApiController {
         tagByName.setTagNumber(tagByName.getTagNumber() + 1);
         tagsService.saveTag(tagByName);
 
-        List<Blog> blogList = blogService.findAllBlog();
+        List<Blog> blogList = blogService.getBlogByPage(1);
         List<Type> allType = typeService.findAllType();
 
         modelMap.put("blogs", blogList);
+        modelMap.put("pages", 1);
         modelMap.put("types", allType);
         if (operationBlog){
             attributes.addAttribute("message", "操作成功");
@@ -80,7 +86,7 @@ public class BlogInputApiController {
     }
 
     @GetMapping("/blogs/delete/api")
-    public String deleteBlog(@RequestParam("id") Long id, RedirectAttributes attributes){
+    public String deleteBlog(@RequestParam("id") Long id, RedirectAttributes attributes,ModelMap modelMap){
         System.out.println("进入delete" + id);
         Blog oneBlogById = blogService.findOneBlogById(id);
         //当删除的时候将分类中对应的数量减一
@@ -95,6 +101,7 @@ public class BlogInputApiController {
         tagsService.saveTag(tagByName);
 
         Boolean deleteBlog = blogService.deleteBlog(id);
+        modelMap.put("pages", 1);
         if (deleteBlog){
             attributes.addAttribute("message", "操作成功");
         } else {
@@ -110,16 +117,45 @@ public class BlogInputApiController {
         model.addAttribute("tags", allTag);
         model.addAttribute("Blog", blog);
         model.addAttribute("types", allType);
+        model.addAttribute("pages", 1);
         return "admin/blogs-input";
     }
 
+    /**
+     * 分页查找以及按照关键字查找
+     * 关键字查找页号为 0，分页查找传递指定的页号
+     * @param search
+     * @param modelMap
+     * @param attributes
+     * @return
+     */
     @PostMapping("/blogs/search")
     public String adminSearchBlog(Search search,ModelMap modelMap,RedirectAttributes attributes){
         System.out.println(search.toString());
+        System.out.println("page:" + search.getPageOrSearch());
         boolean operationBlog = true;
-        List<Blog> blogList = blogService.searchAdminAllBlog(search);
-        if (blogList.isEmpty()){
-            operationBlog = false;
+        List<Blog> blogList;
+        //如果是true，说明是点击搜索进行查找，false说明按照上一页下一页进行查找
+        if (search.getPageOrSearch()){
+            blogList = blogService.searchAdminAllBlogAndByPage(search,search.getPage());
+            SearchNumber++;
+            PageNumber = 0;
+            if (blogList.isEmpty()){
+                operationBlog = false;
+            }
+            if (SearchNumber == 1)
+                modelMap.put("pages", 1);
+            else
+                modelMap.put("pages", search.getPage());
+        }
+        else{
+            blogList = blogService.getBlogByPage(search.getPage());
+            SearchNumber = 1;
+            PageNumber++;
+            if (PageNumber == 0)
+                modelMap.put("pages",1);
+            else
+                modelMap.put("pages", search.getPage());
         }
         System.out.println(blogList.toString());
         List<Type> allType = typeService.findAllType();
@@ -130,9 +166,7 @@ public class BlogInputApiController {
         } else {
             attributes.addAttribute("message", "操作失败");
         }
-
-
-        return "redirect:/admin/blogs";
+        return "/admin/blogs :: blogList";
     }
 
 }

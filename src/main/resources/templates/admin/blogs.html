@@ -47,7 +47,7 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-big">
     <div class="ui container">
-      <div id="table-container" class="ui secondary segment form">
+      <div  class="ui secondary segment form">
         <input type="hidden" name="page" >
         <div class="inline fields">
           <div class="field">
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <div >
+      <div id="table-container">
         <table th:fragment="blogList" class="ui compact teal table">
           <thead>
           <tr>
@@ -97,19 +97,13 @@
           <tbody>
           <tr th:each="blog,iterStat : ${blogs}">
 
-            <!--${page.content}-->
             <td th:text=${iterStat.count}>1</td>
-            <!--th:text=""-->
             <td th:text="${blog.title}" >刻意练习清单</td>
-            <!--th:text="${blog.title}"-->
+
             <td th:text="${blog.typeId}">认知升级</td>
-            <!--th:text="${blog.type.name}"-->
             <td th:text="${blog.recommend} ? '是':'否'">是</td>
-            <!--th:text="${blog.recommend} ? '是':'否'"-->
             <td th:text="${blog.releaseBlog} ? '发布':'草稿'">草稿</td>
-            <!--th:text="${blog.releaseBlog} ? '发布':'草稿'"-->
             <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
-            <!--th:text="${blog.updateTime}"-->
             <td>
               <a th:href="@{/admin/blogs/update/api(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
               <!--th:href="@{/admin/blogs/{id}/input(id=${blog.id})}"-->
@@ -121,11 +115,14 @@
           <tr>
             <th colspan="7">
               <div class="ui mini pagination menu" >
-                <!--th:if="${page.totalPages}>1"-->
-                <a onclick="page(this)"  class="item" >上一页</a>
+                <!--th:if="${page}>1"-->
+                <!--th:if="${page}>1" th:attr="data-page=${page}-1"-->
+                <a onclick="page(this)" class=" item" th:attr="data-page=${pages}-1">上一页</a>
+                <a onclick="page(this)" class=" item" th:attr="data-page=${pages}+1">下一页</a>
                 <!--th:attr="data-page=${page.number}-1"-->
                 <!--th:unless="${page.first}"-->
-                <a onclick="page(this)"  class=" item" >下一页</a>
+                <!--th:attr="data-page=${pages}+1"-->
+                <!--th:attr="data-page=${page}+1"-->
                 <!--th:attr="data-page=${page.number}+1"-->
                 <!--th:unless="${page.last}"-->
               </div>
@@ -188,6 +185,8 @@
   <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
   <!--/*/</th:block>/*/-->
   <script>
+
+    var pageOrSearch = true;
     $('.menu.toggle').click(function () {
       $('.m-item').toggleClass('m-mobile-hide');
     });
@@ -214,20 +213,23 @@
 
     function page(obj) {
       $("[name='page']").val($(obj).data("page"));
+      pageOrSearch = false;
       loaddata();
     }
 
     $("#search-btn").click(function () {
-      $("[name='page']").val(0);
+      $("[name='page']").val(1);
+      pageOrSearch = true;
       loaddata();
     });
     function loaddata() {
-      // $.ajax({cache: false})
-      // $("#table-container").load("/admin/blogs/search",{
-      //   title : $("[name='title']").val(),
-      //   typeId : $("[name='typeId']").val(),
-      //   recommend : $("[name='recommend']").prop('checked')
-      // });
+      $("#table-container").load("/admin/blogs/search",{
+        title : $("[name='title']").val(),
+        typeId : $("[name='typeId']").val(),
+        recommend : $("[name='recommend']").prop('checked'),
+        page : $("[name='page']").val(),
+        pageOrSearch: pageOrSearch
+      });
     }
 
   </script>
