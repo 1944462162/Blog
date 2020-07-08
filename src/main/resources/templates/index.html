@@ -82,7 +82,7 @@
                       </div>
                     </div>
                     <div class="right aligned five wide column">
-                      <a href="#" th:text="${blog.typeId}" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" >认知升级</a>
+                      <a href="#"th:href="@{/blog/api/findAllBlogByType(typeName=${blog.typeId})}" th:text="${blog.typeId}" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" >认知升级</a>
                       <!--th:text="${blog.type.name}"-->
                     </div>
                   </div>
